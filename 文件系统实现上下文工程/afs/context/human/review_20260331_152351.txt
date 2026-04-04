@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "agent_id": "agent_001",
+    "task_id": "task_003",
+    "issues": [
+      "关键词重叠率低: 5.26%"
+    ],
+    "confidence": 0.05263157894736842,
+    "feedback_type": "review",
+    "timestamp": "2026-03-31T15:23:51.470347",
+    "path": "/context/human/review_20260331_152351.txt"
+  },
+  "content": "[模拟LLM响应] 基于上下文回答: 你能帮我解决什么问题？..."
+}

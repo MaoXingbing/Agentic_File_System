@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "session_id": "session_review",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.515351",
+    "path": "/context/history/session_review.log"
+  },
+  "content": "[2026-03-31T15:23:51.515351] user: 请预测明天的股票价格"
+}
+---
+{
+  "metadata": {
+    "session_id": "session_review",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.515351",
+    "path": "/context/history/session_review.log"
+  },
+  "content": "[2026-03-31T15:23:51.515351] agent: [模拟LLM响应] 基于上下文回答: 请预测明天的股票价格..."
+}

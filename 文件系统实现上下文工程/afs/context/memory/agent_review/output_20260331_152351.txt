@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "confidence": 0.8,
+    "source": "llm_output",
+    "agent_id": "agent_review",
+    "memory_key": "output_20260331_152351",
+    "timestamp": "2026-03-31T15:23:51.513444",
+    "path": "/context/memory/agent_review/output_20260331_152351.txt"
+  },
+  "content": "[模拟LLM响应] 基于上下文回答: 请预测明天的股票价格..."
+}

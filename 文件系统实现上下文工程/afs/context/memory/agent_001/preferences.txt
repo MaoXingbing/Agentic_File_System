@@ -1,0 +1,9 @@
+{
+  "metadata": {
+    "agent_id": "agent_001",
+    "memory_key": "preferences",
+    "timestamp": "2026-03-31T15:23:51.396925",
+    "path": "/context/memory/agent_001/preferences.txt"
+  },
+  "content": "用户偏好简洁、技术性强的回答"
+}

@@ -1,0 +1,9 @@
+{
+  "metadata": {
+    "agent_id": "agent_002",
+    "memory_key": "facts",
+    "timestamp": "2026-03-31T15:23:51.474967",
+    "path": "/context/memory/agent_002/facts.txt"
+  },
+  "content": "用户正在开发一个AI聊天机器人项目"
+}

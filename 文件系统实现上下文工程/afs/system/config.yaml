@@ -1,0 +1,16 @@
+token_limit: 8192
+consistency_threshold: 0.7
+max_history_entries: 10
+max_memory_results: 5
+
+paths:
+  history: /context/history
+  memory: /context/memory
+  pad: /context/pad
+  human: /context/human
+  logs: /system/logs
+
+llm:
+  model: qwen-plus
+  temperature: 0.7
+  max_tokens: 2048

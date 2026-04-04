@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "session_id": "session_20260331",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.428395",
+    "path": "/context/history/session_20260331.log"
+  },
+  "content": "[2026-03-31T15:23:51.426934] user: 你好，请介绍一下你自己"
+}
+---
+{
+  "metadata": {
+    "session_id": "session_20260331",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.429955",
+    "path": "/context/history/session_20260331.log"
+  },
+  "content": "[2026-03-31T15:23:51.428395] agent: [模拟LLM响应] 基于上下文回答: 你好，请介绍一下你自己..."
+}
+---
+{
+  "metadata": {
+    "session_id": "session_20260331",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.445838",
+    "path": "/context/history/session_20260331.log"
+  },
+  "content": "[2026-03-31T15:23:51.445838] user: 我最近在学什么技术？"
+}
+---
+{
+  "metadata": {
+    "session_id": "session_20260331",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.447394",
+    "path": "/context/history/session_20260331.log"
+  },
+  "content": "[2026-03-31T15:23:51.446858] agent: [模拟LLM响应] 基于上下文回答: 我最近在学什么技术？..."
+}
+---
+{
+  "metadata": {
+    "session_id": "session_20260331",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.470347",
+    "path": "/context/history/session_20260331.log"
+  },
+  "content": "[2026-03-31T15:23:51.470347] user: 你能帮我解决什么问题？"
+}
+---
+{
+  "metadata": {
+    "session_id": "session_20260331",
+    "type": "history",
+    "timestamp": "2026-03-31T15:23:51.471902",
+    "path": "/context/history/session_20260331.log"
+  },
+  "content": "[2026-03-31T15:23:51.471902] agent: [模拟LLM响应] 基于上下文回答: 你能帮我解决什么问题？..."
+}

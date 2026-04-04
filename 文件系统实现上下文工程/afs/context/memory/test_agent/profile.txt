@@ -1,0 +1,8 @@
+{
+  "metadata": {
+    "type": "profile",
+    "timestamp": "2026-03-31T15:23:51.494688",
+    "path": "/context/memory/test_agent/profile.txt"
+  },
+  "content": "测试用户画像"
+}

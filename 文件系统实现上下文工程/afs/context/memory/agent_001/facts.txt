@@ -1,0 +1,9 @@
+{
+  "metadata": {
+    "agent_id": "agent_001",
+    "memory_key": "facts",
+    "timestamp": "2026-03-31T15:23:51.395759",
+    "path": "/context/memory/agent_001/facts.txt"
+  },
+  "content": "用户是Python开发者，喜欢使用LangChain框架"
+}
