@@ -2,12 +2,14 @@
 最底层的数据存储机制，所有的文件都经过这里
 '''
 
-from ast import Dict
-from datetime import datetime
 import os
-from pathlib import Path
 import json
-from typing import Optional
+from datetime import datetime
+from typing import Optional, List, Dict
+from pathlib import Path
+import os
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 
 class AFS:
@@ -142,26 +144,50 @@ class AFS:
         return self.write(path,json.dumps(content,ensure_ascii=False,indent=2),metadata)        
         
 
-
-    def search(self,path:str,query:str)->list[Dict]:
-        pass
-    #git修改~
+    #从建构中采取精确查找的方式进行检索  path是检索的目录 query是检索的字符串
+    def search(self,path:str,query:str)->List[Dict]:
+        #初始化
+        res=[]
+        #将虚拟路径解析为实际文件系统路径
+        fullpath=self._resolve_path(path)
+        if fullpath is None or not fullpath.exists():
+            return res
         
+        #递归遍历所有目录
+        for tpath in fullpath.rglob("*"):
+            #若是文件夹则递归
+            #若是文件
+            if tpath.is_file():
+                content = tpath.read_text(encoding="utf-8")
+                #检查字符串是否在文件内容中
+                #如果包含
+                if query in content:
+                    #计算query在文件中出现的次数
+                    count=content.lower().count(query.lower())
+                    #则添加到结果列表
+                    res.append({
+                        "path": "/" + str(tpath.relative_to(self.root)), # 文件路径
+                        "relevance":count,  # 相关性评分（出现次数）
+                        #TODO:需要思考一个问题 为什么是前200字符
+                        "snippet":content[:200]  # 内容片段（前200字符）
+                    })
 
+        #按照出现的次数进行排序
+        res.sort(key=lambda x:x["relevance"],reverse=True)
+        #返回结果
+        return res
 
-
-
-
-
-
-
-
-
-
+    
     def list_dir(self,path:str):
         pass
     def delete(self,path:str):
         pass
     
+
+if __name__ == "__main__":
+    test_dir = os.path.join(os.path.dirname(__file__), "..", "test")
+    afs = AFS(test_dir)
+    results = afs.search("/", "你好")
+    print(results)
         
         
