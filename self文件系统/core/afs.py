@@ -177,9 +177,11 @@ class AFS:
         #返回结果
         return res
 
-    
+    #列出目录下的文件和文件夹
     def list_dir(self,path:str):
         pass
+
+    #删除文件或目录
     def delete(self,path:str):
         pass
     

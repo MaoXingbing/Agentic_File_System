@@ -182,12 +182,26 @@ class AFS:
     def list_dir(self, path: str = "/") -> List[str]:
         # 将虚拟路径解析为实际文件系统路径
         full_path = self._resolve_path(path)
-        # 检查路径是否存在且为目录
-        if full_path.exists() and full_path.is_dir():
-            # 返回目录下所有项目的相对路径列表
-            return [str(p.relative_to(self.root)) for p in full_path.iterdir()]
-        # 路径不存在或不是目录时返回空列表
-        return []
+        
+        # 检查路径是否存在，不存在则返回空列表
+        if not full_path.exists():
+            return []
+        
+        # 检查路径是否为目录，不是目录则返回空列表
+        if not full_path.is_dir():
+            return []
+        
+        # 初始化结果列表
+        result = []
+        # 遍历目录中的所有项目
+        for item in full_path.iterdir():
+            # 计算相对于根目录的相对路径
+            relative = item.relative_to(self.root)
+            # 将相对路径转换为字符串并添加到结果列表
+            result.append(str(relative))
+        
+        # 返回目录内容列表
+        return result
     
     def delete(self, path: str) -> bool:
         # 将虚拟路径解析为实际文件系统路径
