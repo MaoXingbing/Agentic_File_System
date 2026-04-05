@@ -74,7 +74,6 @@ class AFS:
             path = path[1:]
         return self.root / path
     
-    
     def read(self, path: str) -> Optional[str]:
         #读取文件内容的方法，返回文件内容的字符串或None
         # 将虚拟路径解析为实际文件系统路径
@@ -179,6 +178,7 @@ class AFS:
         # 返回搜索结果列表
         return results
     
+    #列出目录下的文件和文件夹
     def list_dir(self, path: str = "/") -> List[str]:
         # 将虚拟路径解析为实际文件系统路径
         full_path = self._resolve_path(path)

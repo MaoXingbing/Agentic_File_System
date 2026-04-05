@@ -68,7 +68,6 @@ class AFS:
         #内容为空返回none
         return None
 
-
     #写入文件内容的方法 支持元数据和追加模式
     def write(self,path:str,content:str,
             metadata:Dict=None,append:bool=False)->bool:
@@ -179,7 +178,16 @@ class AFS:
 
     #列出目录下的文件和文件夹
     def list_dir(self,path:str):
-        pass
+        #将虚拟路径解析为实际路径
+        #检查路径是否存在
+        #检查路径是否为目录
+        #遍历目录下的所有项目
+            #计算相对于根目录的相对路径
+            #将路径转为字符串添加到结果列表
+        #返回结果
+        return result
+
+
 
     #删除文件或目录
     def delete(self,path:str):
