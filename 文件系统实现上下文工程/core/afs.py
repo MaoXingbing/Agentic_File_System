@@ -225,20 +225,31 @@ class AFS:
         return False
     
     def mount(self, source: str, path: str) -> bool:
+        # 将虚拟路径解析为实际文件系统路径
         mount_path = self._resolve_path(path)
+        # 确保父目录存在，如果不存在则自动创建
         mount_path.parent.mkdir(parents=True, exist_ok=True)
         
+        # 检查源路径是否存在
         if os.path.exists(source):
+            # 判断源路径是否为目录
             if os.path.isdir(source):
+                # 导入shutil模块用于文件/目录操作
                 import shutil
+                # 如果挂载点已存在，先删除旧的挂载内容
                 if mount_path.exists():
                     shutil.rmtree(mount_path)
+                # 递归复制整个目录到挂载点
                 shutil.copytree(source, mount_path)
             else:
+                # 源为单个文件，直接复制到挂载点
                 shutil.copy2(source, mount_path)
             
+            # 记录挂载操作到日志
             self._log_operation("mount", path, {"source": source})
+            # 返回挂载成功
             return True
+        # 源路径不存在时返回挂载失败
         return False
     
     def _log_operation(self, operation: str, path: str, metadata: Dict):

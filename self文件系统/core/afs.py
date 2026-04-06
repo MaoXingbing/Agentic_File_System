@@ -9,6 +9,7 @@ from typing import Optional, List, Dict
 from pathlib import Path
 import os
 import sys
+import shutil
 sys.stdout.reconfigure(encoding='utf-8')
 
 
@@ -142,7 +143,6 @@ class AFS:
         '''
         return self.write(path,json.dumps(content,ensure_ascii=False,indent=2),metadata)        
         
-
     #从建构中采取精确查找的方式进行检索  path是检索的目录 query是检索的字符串
     def search(self,path:str,query:str)->List[Dict]:
         #初始化
@@ -179,20 +179,81 @@ class AFS:
     #列出目录下的文件和文件夹
     def list_dir(self,path:str):
         #将虚拟路径解析为实际路径
+        full_path=self._resolve_path(path)
         #检查路径是否存在
+        if full_path is None or not full_path.exists():
+            return []
         #检查路径是否为目录
+        if not full_path.is_dir():
+            return []
+        #初始化结果列表
+        result=[]
         #遍历目录下的所有项目
+        for item in full_path.iterdir():
             #计算相对于根目录的相对路径
+            relative_path=item.relative_to(self.root)
             #将路径转为字符串添加到结果列表
+            result.append(str(relative_path))
         #返回结果
         return result
 
-
-
     #删除文件或目录
-    def delete(self,path:str):
-        pass
+    def delete(self,path:str)->bool:
+        #将虚拟路径解析为实际路径
+        full_path=self._resolve_path(path)
+        #检查路径是否存在
+        if full_path.exists():
+        #路径若存在 判断是不是目录
+            if full_path.is_dir():
+        #是目录 递归删除
+                
+                shutil.rmtree(full_path)
+        #是文件 删除文件
+            else:
+                full_path.unlink()
+        #记录操作到日志
+            self._log_operation("delete",full_path,{})
+        #返回成功
+            return True
+        return False
     
+    #将外部文件挂载到内部系统
+    def mount(self,source:str,path:str)->bool:
+        #将虚拟路径解析为实际路径:实际存储的路径
+        mount_path=self._resolve_path(path)
+        source=Path(source)
+        #检查路径是否存在
+        if source.exists():
+            #判断是否为目录 若是目录 递归挂载
+            if source.is_dir():
+                shutil.copytree(source,mount_path)
+            #若是文件 直接挂载
+            elif source.is_file():
+                shutil.copy(source,mount_path)
+            #记录操作到日志
+            self._log_operation("mount", path, {"source": source, "mount_path": mount_path})
+            #返回成功
+            return True
+        #返回失败
+        return False
+
+    def _log_operation(self,operation:str,path:str,metadata:Dict):
+        log_path=self.root/"system"/"logs"/"operations.log"
+        #确保父目录存在
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+
+        #构建日志数据结构
+        log_entry={
+            "timestamp":datetime.now().isoformat(),
+            "operation":operation,
+            "path":path,
+            "metadata":metadata
+        }
+
+        #写入日志文件
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
+
 
 if __name__ == "__main__":
     test_dir = os.path.join(os.path.dirname(__file__), "..", "test")
